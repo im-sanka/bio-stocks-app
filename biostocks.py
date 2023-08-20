@@ -198,10 +198,10 @@ if uploaded_file:
 elif manual_tickers and manual_tickers[0]:
     stock_symbols = manual_tickers
 else:
-    with open("../stocks_list.txt", "r") as file:
+    with open("stocks_list.txt", "r") as file:
         stock_symbols = [line.strip().split(" - ")[0] for line in file]
 
-download_link = get_file_download_link("../stocks_list.txt", "the list example here!")
+download_link = get_file_download_link("stocks_list.txt", "the list example here!")
 st.sidebar.markdown(download_link, unsafe_allow_html=True)
 
 # Date Range Selector

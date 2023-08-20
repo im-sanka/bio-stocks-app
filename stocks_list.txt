@@ -1,0 +1,718 @@
+NVO - Novo Nordisk A/S
+VRTX - Vertex Pharmaceuticals Incorporated
+REGN - Regeneron Pharmaceuticals, Inc.
+MRNA - Moderna, Inc.
+SGEN - Seagen Inc.
+ARGX - argenx SE
+BNTX - BioNTech SE
+GMAB - Genmab A/S
+ALNY - Alnylam Pharmaceuticals, Inc.
+BGNE - BeiGene, Ltd.
+BMRN - BioMarin Pharmaceutical Inc.
+INCY - Incyte Corporation
+RPRX - Royalty Pharma plc
+TECH - Bio-Techne Corporation
+LEGN - Legend Biotech Corporation
+UTHR - United Therapeutics Corporation
+SRPT - Sarepta Therapeutics, Inc.
+JAZZ - Jazz Pharmaceuticals plc
+ROIV - Roivant Sciences Ltd.
+EXEL - Exelixis, Inc.
+KRTX - Karuna Therapeutics, Inc.
+RETA - Reata Pharmaceuticals, Inc.
+HALO - Halozyme Therapeutics, Inc.
+IONS - Ionis Pharmaceuticals, Inc.
+ABCM - Abcam plc
+ASND - Ascendis Pharma A/S
+BBIO - BridgeBio Pharma, Inc.
+ALKS - Alkermes plc
+ACAD - ACADIA Pharmaceuticals Inc.
+PCVX - Vaxcyte, Inc.
+CRSP - CRISPR Therapeutics AG
+DNA - Ginkgo Bioworks Holdings, Inc.
+FOLD - Amicus Therapeutics, Inc.
+APLS - Apellis Pharmaceuticals, Inc.
+IMGN - ImmunoGen, Inc.
+NTLA - Intellia Therapeutics, Inc.
+CERE - Cerevel Therapeutics Holdings, Inc.
+DNLI - Denali Therapeutics Inc.
+PRTA - Prothena Corporation plc
+AXSM - Axsome Therapeutics, Inc.
+RVMD - Revolution Medicines, Inc.
+CORT - Corcept Therapeutics Incorporated
+MDGL - Madrigal Pharmaceuticals, Inc.
+CYTK - Cytokinetics, Incorporated
+PTCT - PTC Therapeutics, Inc.
+ARWR - Arrowhead Pharmaceuticals, Inc.
+KRYS - Krystal Biotech, Inc.
+INSM - Insmed Incorporated
+PROK - ProKidney Corp.
+BPMC - Blueprint Medicines Corporation
+IMVT - Immunovant, Inc.
+MLTX - MoonLake Immunotherapeutics
+IMCR - Immunocore Holdings plc
+FTRE - Fortrea Holdings Inc.
+KDNY - Chinook Therapeutics, Inc.
+AKRO - Akero Therapeutics, Inc.
+MRVI - Maravai LifeSciences Holdings, Inc.
+GLPG - Galapagos NV
+RARE - Ultragenyx Pharmaceutical Inc.
+ZLAB - Zai Lab Limited
+MORF - Morphic Holding, Inc.
+NUVL - Nuvalent, Inc.
+SLRN - Acelyrin, Inc.
+XENE - Xenon Pharmaceuticals Inc.
+MRTX - Mirati Therapeutics, Inc.
+CVAC - CureVac N.V.
+VTYX - Ventyx Biosciences, Inc.
+BEAM - Beam Therapeutics Inc.
+HRMY - Harmony Biosciences Holdings, Inc.
+ZNTL - Zentalis Pharmaceuticals, Inc.
+RXRX - Recursion Pharmaceuticals, Inc.
+VCYT - Veracyte, Inc.
+VIR - Vir Biotechnology, Inc.
+IOVA - Iovance Biotherapeutics, Inc.
+SWTX - SpringWorks Therapeutics, Inc.
+ABCL - AbCellera Biologics Inc.
+ACLX - Arcellx, Inc.
+RVNC - Revance Therapeutics, Inc.
+CPRX - Catalyst Pharmaceuticals, Inc.
+GERN - Geron Corporation
+RYTM - Rhythm Pharmaceuticals, Inc.
+TGTX - TG Therapeutics, Inc.
+VKTX - Viking Therapeutics, Inc.
+VCEL - Vericel Corporation
+AGIO - Agios Pharmaceuticals, Inc.
+VRNA - Verona Pharma plc
+AMLX - Amylyx Pharmaceuticals, Inc.
+IDYA - IDEAYA Biosciences, Inc.
+CLDX - Celldex Therapeutics, Inc.
+BHVN - Biohaven Pharmaceutical Holding Company Ltd.
+XNCR - Xencor, Inc.
+MNKD - MannKind Corporation
+AUPH - Aurinia Pharmaceuticals Inc.
+RCUS - Arcus Biosciences, Inc.
+ARVN - Arvinas, Inc.
+RCKT - Rocket Pharmaceuticals, Inc.
+BCRX - BioCryst Pharmaceuticals, Inc.
+CBAY - CymaBay Therapeutics, Inc.
+RLAY - Relay Therapeutics, Inc.
+SAGE - Sage Therapeutics, Inc.
+SNDX - Syndax Pharmaceuticals, Inc.
+ETNB - 89bio, Inc.
+IRON - Disc Medicine, Inc.
+SMMT - Summit Therapeutics Inc.
+KNSA - Kiniksa Pharmaceuticals, Ltd.
+DAWN - Day One Biopharmaceuticals, Inc.
+LGND - Ligand Pharmaceuticals Incorporated
+TVTX - Travere Therapeutics, Inc.
+REPL - Replimune Group, Inc.
+PRME - Prime Medicine, Inc.
+MRUS - Merus N.V.
+VERV - Verve Therapeutics, Inc.
+KYMR - Kymera Therapeutics, Inc.
+EQRX - EQRx, Inc.
+PTGX - Protagonist Therapeutics, Inc.
+PLRX - Pliant Therapeutics, Inc.
+KROS - Keros Therapeutics, Inc.
+GPCR - Structure Therapeutics Inc.
+SANA - Sana Biotechnology, Inc.
+MOR - MorphoSys AG
+VALN - Valneva SE
+MIRM - Mirum Pharmaceuticals, Inc.
+COGT - Cogent Biosciences, Inc.
+ADMA - ADMA Biologics, Inc.
+APGE - Apogee Therapeutics, Inc.
+IMTX - Immatics N.V.
+PNT - POINT Biopharma Global Inc.
+ADPT - Adaptive Biotechnologies Corporation
+CRNX - Crinetics Pharmaceuticals, Inc.
+NAMS - NewAmsterdam Pharma Company N.V.
+INVA - Innoviva, Inc.
+PHAT - Phathom Pharmaceuticals, Inc.
+KURA - Kura Oncology, Inc.
+MDXG - MiMedx Group, Inc.
+AMAM - Ambrx Biopharma Inc.
+ARDX - Ardelyx, Inc.
+VRDN - Viridian Therapeutics, Inc.
+RAPT - RAPT Therapeutics, Inc.
+EXAI - Exscientia plc
+VERA - Vera Therapeutics, Inc.
+PHAR - Pharming Group N.V.
+BCYC - Bicycle Therapeutics plc
+CDMO - Avid Bioservices, Inc.
+IBRX - ImmunityBio, Inc.
+RGNX - REGENXBIO Inc.
+SAVA - Cassava Sciences, Inc.
+ARCT - Arcturus Therapeutics Holdings Inc.
+ELVN - Enliven Therapeutics, Inc.
+PRTC - PureTech Health plc
+AVXL - Anavex Life Sciences Corp.
+EDIT - Editas Medicine, Inc.
+FDMT - 4D Molecular Therapeutics, Inc.
+INBX - Inhibrx, Inc.
+TNGX - Tango Therapeutics, Inc.
+BMEA - Biomea Fusion, Inc.
+TYRA - Tyra Biosciences, Inc.
+ALPN - Alpine Immune Sciences, Inc.
+SPRY - ARS Pharmaceuticals, Inc.
+DYN - Dyne Therapeutics, Inc.
+BLTE - Belite Bio, Inc
+CNTA - Centessa Pharmaceuticals plc
+NVAX - Novavax, Inc.
+OABI - OmniAb, Inc.
+PHVS - Pharvaris N.V.
+RNA - Avidity Biosciences, Inc.
+ALEC - Alector, Inc.
+GHRS - GH Research PLC
+ALLO - Allogene Therapeutics, Inc.
+GNLX - Genelux Corporation
+CRBU - Caribou Biosciences, Inc.
+JANX - Janux Therapeutics, Inc.
+HLVX - HilleVax, Inc.
+LYEL - Lyell Immunopharma, Inc.
+TBPH - Theravance Biopharma, Inc.
+ARQT - Arcutis Biotherapeutics, Inc.
+TRDA - Entrada Therapeutics, Inc.
+CABA - Cabaletta Bio, Inc.
+SVRA - Savara Inc.
+MLYS - Mineralys Therapeutics, Inc.
+URGN - UroGen Pharma Ltd.
+CALT - Calliditas Therapeutics AB (publ)
+ANAB - AnaptysBio, Inc.
+MCRB - Seres Therapeutics, Inc.
+EYPT - EyePoint Pharmaceuticals, Inc.
+AUTL - Autolus Therapeutics plc
+AGEN - Agenus Inc.
+LQDA - Liquidia Corporation
+WVE - Wave Life Sciences Ltd.
+ZYME - Zymeworks Inc.
+APLM - Apollomics Inc.
+OCS - Oculis Holding AG
+AMRN - Amarin Corporation plc
+TARS - Tarsus Pharmaceuticals, Inc.
+ALDX - Aldeyra Therapeutics, Inc.
+NRIX - Nurix Therapeutics, Inc.
+CHRS - Coherus BioSciences, Inc.
+ERAS - Erasca, Inc.
+ICPT - Intercept Pharmaceuticals, Inc.
+ITOS - iTeos Therapeutics, Inc.
+DSGN - Design Therapeutics, Inc.
+OLMA - Olema Pharmaceuticals, Inc.
+CGEM - Cullinan Oncology, Inc.
+EWTX - Edgewise Therapeutics, Inc.
+LXRX - Lexicon Pharmaceuticals, Inc.
+AVTE - Aerovate Therapeutics, Inc.
+NUVB - Nuvation Bio Inc.
+CBUS - Cibus, Inc.
+ABOS - Acumen Pharmaceuticals, Inc.
+OTLK - Outlook Therapeutics, Inc.
+RPTX - Repare Therapeutics Inc.
+PMVP - PMV Pharmaceuticals, Inc.
+VYGR - Voyager Therapeutics, Inc.
+QURE - uniQure N.V.
+FHTX - Foghorn Therapeutics Inc.
+AURA - Aura Biosciences, Inc.
+ORIC - ORIC Pharmaceuticals, Inc.
+PGEN - Precigen, Inc.
+SRRK - Scholar Rock Holding Corporation
+NAUT - Nautilus Biotechnology, Inc.
+TERN - Terns Pharmaceuticals, Inc.
+KALV - KalVista Pharmaceuticals, Inc.
+MGNX - MacroGenics, Inc.
+ALLK - Allakos Inc.
+MGTX - MeiraGTx Holdings plc
+VNDA - Vanda Pharmaceuticals Inc.
+BLUE - bluebird bio, Inc.
+MRNS - Marinus Pharmaceuticals, Inc.
+IGMS - IGM Biosciences, Inc.
+ABUS - Arbutus Biopharma Corporation
+HUMA - Humacyte, Inc.
+OCUL - Ocular Therapeutix, Inc.
+ENTA - Enanta Pharmaceuticals, Inc.
+ALVR - AlloVir, Inc.
+GLUE - Monte Rosa Therapeutics, Inc.
+CMPX - Compass Therapeutics, Inc.
+ICVX - Icosavax, Inc.
+NBTX - Nanobiotix S.A.
+XERS - Xeris Biopharma Holdings, Inc.
+QSI - Quantum-Si incorporated
+DBVT - DBV Technologies S.A.
+FATE - Fate Therapeutics, Inc.
+VAXX - Vaxxinity, Inc.
+TSVT - 2seventy bio, Inc.
+IMRX - Immuneering Corporation
+TNYA - Tenaya Therapeutics, Inc.
+AVIR - Atea Pharmaceuticals, Inc.
+GBIO - Generation Bio Co.
+SCPH - scPharmaceuticals Inc.
+OMER - Omeros Corporation
+ATAI - Atai Life Sciences N.V.
+ACRV - Acrivon Therapeutics, Inc.
+FULC - Fulcrum Therapeutics, Inc.
+DRTS - Alpha Tau Medical Ltd.
+AEON - AEON Biopharma, Inc.
+GRCL - Gracell Biotechnologies Inc.
+STRO - Sutro Biopharma, Inc.
+TSBX - Turnstone Biologics Corp.
+OVID - Ovid Therapeutics Inc.
+ACIU - AC Immune SA
+IPHA - Innate Pharma S.A.
+CARM - Carisma Therapeutics, Inc.
+THRD - Third Harmonic Bio, Inc.
+VSTM - Verastem, Inc.
+NVCT - Nuvectis Pharma, Inc.
+LCTX - Lineage Cell Therapeutics, Inc.
+YMAB - Y-mAbs Therapeutics, Inc.
+PSTX - Poseida Therapeutics, Inc.
+STOK - Stoke Therapeutics, Inc.
+VIGL - Vigil Neuroscience, Inc.
+ATXS - Astria Therapeutics, Inc.
+FENC - Fennec Pharmaceuticals Inc.
+AKBA - Akebia Therapeutics, Inc.
+CRMD - CorMedix Inc.
+IFRX - InflaRx N.V.
+RLYB - Rallybio Corporation
+VRCA - Verrica Pharmaceuticals Inc.
+MOLN - Molecular Partners AG
+CELC - Celcuity Inc.
+INZY - Inozyme Pharma, Inc.
+BTAI - BioXcel Therapeutics, Inc.
+SLN - Silence Therapeutics plc
+RANI - Rani Therapeutics Holdings, Inc.
+OBIO - Orchestra BioMed Holdings, Inc.
+IMAB - I-Mab
+SPPI - Spectrum Pharmaceuticals, Inc.
+RPHM - Reneo Pharmaceuticals, Inc.
+ALXO - ALX Oncology Holdings Inc.
+FUSN - Fusion Pharmaceuticals Inc.
+ATRA - Atara Biotherapeutics, Inc.
+OMGA - Omega Therapeutics, Inc.
+MESO - Mesoblast Limited
+XFOR - X4 Pharmaceuticals, Inc.
+RIGL - Rigel Pharmaceuticals, Inc.
+LIAN - LianBio
+GNFT - Genfit S.A.
+VOR - Vor Biopharma Inc.
+HRTX - Heron Therapeutics, Inc.
+KPTI - Karyopharm Therapeutics Inc.
+PRLD - Prelude Therapeutics Incorporated
+ADVM - Adverum Biotechnologies, Inc.
+EVLO - Evelo Biosciences, Inc.
+XOMA - XOMA Corporation
+SGMO - Sangamo Therapeutics, Inc.
+ZURA - Zura Bio Limited
+ADAP - Adaptimmune Therapeutics plc
+IKNA - Ikena Oncology, Inc.
+PBYI - Puma Biotechnology, Inc.
+NGM - NGM Biopharmaceuticals, Inc.
+IMMP - Immutep Limited
+NKTR - Nektar Therapeutics
+MACK - Merrimack Pharmaceuticals, Inc.
+ZVRA - Zevra Therapeutics, Inc.
+ANNX - Annexon, Inc.
+LYRA - Lyra Therapeutics, Inc.
+SEEL - Seelos Therapeutics, Inc.
+SEER - Seer, Inc.
+IVVD - Invivyd, Inc.
+IVA - Inventiva S.A.
+BDTX - Black Diamond Therapeutics, Inc.
+KOD - Kodiak Sciences Inc.
+SELB - Selecta Biosciences, Inc.
+LRMR - Larimar Therapeutics, Inc.
+OPT - Opthea Limited
+ATNM - Actinium Pharmaceuticals, Inc.
+CCCC - C4 Therapeutics, Inc.
+IPSC - Century Therapeutics, Inc.
+CARA - Cara Therapeutics, Inc.
+GRTS - Gritstone bio, Inc.
+MNMD - Mind Medicine (MindMed) Inc.
+ANTX - AN2 Therapeutics, Inc.
+LBPH - Longboard Pharmaceuticals, Inc.
+ARMP - Armata Pharmaceuticals, Inc.
+ABSI - Absci Corporation
+MREO - Mereo BioPharma Group plc
+XBIT - XBiotech Inc.
+GRPH - Graphite Bio, Inc.
+JSPR - Jasper Therapeutics, Inc.
+CAPR - Capricor Therapeutics, Inc.
+CTXR - Citius Pharmaceuticals, Inc.
+PDSB - PDS Biotechnology Corporation
+INMB - INmune Bio, Inc.
+ALT - Altimmune, Inc.
+OCEA - Ocean Biomedical, Inc.
+AADI - Aadi Bioscience, Inc.
+MRSN - Mersana Therapeutics, Inc.
+TRVI - Trevi Therapeutics, Inc.
+PRAX - Praxis Precision Medicines, Inc.
+CDXS - Codexis, Inc.
+PLX - Protalix BioTherapeutics, Inc.
+THRX - Theseus Pharmaceuticals, Inc.
+GLSI - Greenwich LifeSciences, Inc.
+ADCT - ADC Therapeutics SA
+ATOS - Atossa Therapeutics, Inc.
+PEPG - PepGen Inc.
+BIVI - BioVie Inc.
+ADIL - Adial Pharmaceuticals, Inc.
+ORMP - Oramed Pharmaceuticals Inc.
+KNTE - Kinnate Biopharma Inc.
+CUE - Cue Biopharma, Inc.
+FGEN - FibroGen, Inc.
+PRDS - Pardes Biosciences, Inc.
+ONCY - Oncolytics Biotech Inc.
+GMDA - Gamida Cell Ltd.
+OCGN - Ocugen, Inc.
+DBTX - Decibel Therapeutics, Inc.
+BCAB - BioAtla, Inc.
+TALS - Talaris Therapeutics, Inc.
+PRTK - Paratek Pharmaceuticals, Inc.
+PRQR - ProQR Therapeutics N.V.
+ANVS - Annovis Bio, Inc.
+EPIX - ESSA Pharma Inc.
+CDXC - ChromaDex Corporation
+INO - Inovio Pharmaceuticals, Inc.
+MNOV - MediciNova, Inc.
+ANIX - Anixa Biosciences, Inc.
+YS - YS Biopharma Co., Ltd.
+MLEC - Moolec Science SA
+ACHV - Achieve Life Sciences, Inc.
+GOSS - Gossamer Bio, Inc.
+CTMX - CytomX Therapeutics, Inc.
+BCTX - BriaCell Therapeutics Corp.
+KZR - Kezar Life Sciences, Inc.
+LIFE - aTyr Pharma, Inc.
+CLLS - Cellectis S.A.
+ATHA - Athira Pharma, Inc.
+DMAC - DiaMedica Therapeutics Inc.
+MIST - Milestone Pharmaceuticals Inc.
+GLYC - GlycoMimetics, Inc.
+VXRT - Vaxart, Inc.
+CRVS - Corvus Pharmaceuticals, Inc.
+GNTA - Genenta Science S.p.A.
+VERU - Veru Inc.
+PYXS - Pyxis Oncology, Inc.
+CGEN - Compugen Ltd.
+GTHX - G1 Therapeutics, Inc.
+ACET - Adicet Bio, Inc.
+TCRX - TScan Therapeutics, Inc.
+NKTX - Nkarta, Inc.
+CYT - Cyteir Therapeutics, Inc.
+TCRT - Alaunos Therapeutics, Inc.
+RVPH - Reviva Pharmaceuticals Holdings, Inc.
+ORTX - Orchard Therapeutics plc
+RLMD - Relmada Therapeutics, Inc.
+HOWL - Werewolf Therapeutics, Inc.
+STTK - Shattuck Labs, Inc.
+CLNN - Clene Inc.
+ETON - Eton Pharmaceuticals, Inc.
+BLRX - BioLineRx Ltd.
+CSBR - Champions Oncology, Inc.
+GALT - Galectin Therapeutics Inc.
+KRON - Kronos Bio, Inc.
+IMNM - Immunome, Inc.
+CRDF - Cardiff Oncology, Inc.
+SPRB - Spruce Biosciences, Inc.
+OCUP - Ocuphire Pharma, Inc.
+CDTX - Cidara Therapeutics, Inc.
+APLT - Applied Therapeutics, Inc.
+CMRX - Chimerix, Inc.
+MDWD - MediWound Ltd.
+INTS - Intensity Therapeutics, Inc.
+AFMD - Affimed N.V.
+IMUX - Immunic, Inc.
+SLGL - Sol-Gel Technologies Ltd.
+VACC - Vaccitech plc
+EYEN - Eyenovia, Inc.
+SYRS - Syros Pharmaceuticals, Inc.
+BNTC - Benitec Biopharma Inc.
+CLGN - CollPlant Biotechnologies Ltd.
+XLO - Xilio Therapeutics, Inc.
+HCWB - HCW Biologics Inc.
+SLDB - Solid Biosciences Inc.
+ANEB - Anebulo Pharmaceuticals, Inc.
+SPRO - Spero Therapeutics, Inc.
+ELYM - Eliem Therapeutics, Inc.
+FBIO - Fortress Biotech, Inc.
+BCLI - Brainstorm Cell Therapeutics Inc.
+LGVN - Longeveron Inc.
+AVRO - AVROBIO, Inc.
+CYBN - Cybin Inc.
+TIL - Instil Bio, Inc.
+FIXX - Homology Medicines, Inc.
+CRIS - Curis, Inc.
+ABEO - Abeona Therapeutics Inc.
+DARE - Daré Bioscience, Inc.
+NERV - Minerva Neurosciences, Inc.
+CLSD - Clearside Biomedical, Inc.
+GLTO - Galecto, Inc.
+INKT - MiNK Therapeutics, Inc.
+TLSA - Tiziana Life Sciences Ltd
+CVM - CEL-SCI Corporation
+DTIL - Precision BioSciences, Inc.
+VTVT - vTv Therapeutics Inc.
+ADAG - Adagene Inc.
+IPA - ImmunoPrecise Antibodies Ltd.
+SURF - Surface Oncology, Inc.
+CELL - PhenomeX Inc.
+CELU - Celularity Inc.
+MYMD - MyMD Pharmaceuticals, Inc.
+HOOK - HOOKIPA Pharma Inc.
+SGTX - Sigilon Therapeutics, Inc.
+DYAI - Dyadic International, Inc.
+VIRX - Viracta Therapeutics, Inc.
+ASMB - Assembly Biosciences, Inc.
+RZLT - Rezolute, Inc.
+SLNO - Soleno Therapeutics, Inc.
+LTRN - Lantern Pharma Inc.
+IOBT - IO Biotech, Inc.
+CTCX - Carmell Therapeutics Corporation
+CNTB - Connect Biopharma Holdings Limited
+VTGN - VistaGen Therapeutics, Inc.
+ENLV - Enlivex Therapeutics Ltd.
+MGTA - Magenta Therapeutics, Inc.
+NXTC - NextCure, Inc.
+MTEM - Molecular Templates, Inc.
+BOLT - Bolt Biotherapeutics, Inc.
+TSHA - Taysha Gene Therapies, Inc.
+CGTX - Cognition Therapeutics, Inc.
+MEIP - MEI Pharma, Inc.
+BIOR - Biora Therapeutics, Inc.
+GDTC - CytoMed Therapeutics Limited
+RVLP - RVL Pharmaceuticals plc
+RENB - Renovaro Biosciences Inc.
+PASG - Passage Bio, Inc.
+QNCX - Quince Therapeutics, Inc.
+SLS - SELLAS Life Sciences Group, Inc.
+GANX - Gain Therapeutics, Inc.
+LVTX - LAVA Therapeutics N.V.
+PRTG - Portage Biotech Inc.
+MRKR - Marker Therapeutics, Inc.
+ALGS - Aligos Therapeutics, Inc.
+EFTR - eFFECTOR Therapeutics, Inc.
+EVGN - Evogene Ltd.
+RAIN - Rain Therapeutics Inc.
+SABS - SAB Biotherapeutics, Inc.
+BYSI - BeyondSpring Inc.
+AGLE - Aeglea BioTherapeutics, Inc.
+ACHL - Achilles Therapeutics plc
+ICCC - ImmuCell Corporation
+MTNB - Matinas BioPharma Holdings, Inc.
+GNPX - Genprex, Inc.
+UBX - Unity Biotechnology, Inc.
+CKPT - Checkpoint Therapeutics, Inc.
+MBIO - Mustang Bio, Inc.
+NCNA - NuCana plc
+ASLN - ASLAN Pharmaceuticals Limited
+SNTI - Senti Biosciences, Inc.
+PHXM - PHAXIAM Therapeutics S.A.
+MIRO - Miromatrix Medical Inc.
+INAB - IN8bio, Inc.
+SYBX - Synlogic, Inc.
+ALZN - Alzamend Neuro, Inc.
+OKYO - OKYO Pharma Limited
+COYA - Coya Therapeutics, Inc.
+AZTR - Azitra Inc.
+CADL - Candel Therapeutics, Inc.
+PTN - Palatin Technologies, Inc.
+CASI - CASI Pharmaceuticals, Inc.
+HARP - Harpoon Therapeutics, Inc.
+SNSE - Sensei Biotherapeutics, Inc.
+AGE - AgeX Therapeutics, Inc.
+ELTX - Elicio Therapeutics, Inc.
+PLUR - Pluri Inc.
+ORGS - Orgenesis Inc.
+IMMX - Immix Biopharma, Inc.
+CRBP - Corbus Pharmaceuticals Holdings, Inc.
+ABIO - ARCA biopharma, Inc.
+COCP - Cocrystal Pharma, Inc.
+EVAX - Evaxion Biotech A/S
+VBIV - VBI Vaccines Inc.
+OCX - OncoCyte Corporation
+UNCY - Unicycive Therapeutics, Inc.
+IMPL - Impel Pharmaceuticals Inc.
+MAIA - MAIA Biotechnology, Inc.
+AIM - AIM ImmunoTech Inc.
+LPTX - Leap Therapeutics, Inc.
+EQ - Equillium, Inc.
+ELDN - Eledon Pharmaceuticals, Inc.
+NLSP - NLS Pharmaceutics AG
+HEPA - Hepion Pharmaceuticals, Inc.
+APTO - Aptose Biosciences Inc.
+LMNL - Liminal BioSciences Inc.
+EIGR - Eiger BioPharmaceuticals, Inc.
+NTRB - Nutriband Inc.
+MDNA - Medicenna Therapeutics Corp.
+TARA - Protara Therapeutics, Inc.
+LPCN - Lipocine Inc.
+COEP - Coeptis Therapeutics, Inc.
+PPBT - Purple Biotech Ltd.
+RGLS - Regulus Therapeutics Inc.
+AKTX - Akari Therapeutics, Plc
+FREQ - Frequency Therapeutics, Inc.
+LUMO - Lumos Pharma, Inc.
+ACXP - Acurx Pharmaceuticals, Inc.
+NRXP - NRx Pharmaceuticals, Inc.
+KZIA - Kazia Therapeutics Limited
+BTTX - Better Therapeutics, Inc.
+ELEV - Elevation Oncology, Inc.
+BCEL - Atreca, Inc.
+LSTA - Lisata Therapeutics, Inc.
+PMCB - PharmaCyte Biotech, Inc.
+ENTX - Entera Bio Ltd.
+ZIVO - ZIVO Bioscience, Inc.
+ONTX - Onconova Therapeutics, Inc.
+VINC - Vincerx Pharma, Inc.
+PMN - ProMIS Neurosciences, Inc.
+FRES - Fresh2 Group Ltd.
+PIRS - Pieris Pharmaceuticals, Inc.
+INDP - Indaptus Therapeutics, Inc.
+RNXT - RenovoRx, Inc.
+KA - Kineta, Inc.
+FBRX - Forte Biosciences, Inc.
+ONCT - Oncternal Therapeutics, Inc.
+CNTX - Context Therapeutics Inc.
+MBRX - Moleculin Biotech, Inc.
+EDSA - Edesa Biotech, Inc.
+BCDA - BioCardia, Inc.
+ACST - Acasti Pharma Inc.
+VYNE - VYNE Therapeutics Inc.
+FRLN - Freeline Therapeutics Holdings plc
+ACER - Acer Therapeutics Inc.
+VCNX - Vaccinex, Inc.
+NRBO - NeuroBo Pharmaceuticals, Inc.
+PHGE - BiomX Inc.
+NHWK - NightHawk Biosciences, Inc.
+KTTA - Pasithea Therapeutics Corp.
+VBLT - Vascular Biogenics Ltd.
+VIRI - Virios Therapeutics, Inc.
+NNVC - NanoViricides, Inc.
+CLRB - Cellectar Biosciences, Inc.
+SRZN - Surrozen, Inc.
+BWV - Blue Water Vaccines, Inc.
+TFFP - TFF Pharmaceuticals, Inc.
+APRE - Aprea Therapeutics, Inc.
+GOVX - GeoVax Labs, Inc.
+ERNA - Eterna Therapeutics Inc.
+AEZS - Aeterna Zentaris Inc.
+ITRM - Iterum Therapeutics plc
+DOMH - Dominari Holdings Inc.
+CMRA - Comera Life Sciences Holdings, Inc.
+AIMD - Ainos, Inc.
+GRTX - Galera Therapeutics, Inc.
+ONVO - Organovo Holdings, Inc.
+PYPD - PolyPid Ltd.
+CMMB - Chemomab Therapeutics Ltd.
+IKT - Inhibikase Therapeutics, Inc.
+NRSN - NeuroSense Therapeutics Ltd.
+CBIO - Catalyst Biosciences, Inc.
+ARAV - Aravive, Inc.
+LABP - Landos Biopharma, Inc.
+BNOX - Bionomics Limited
+AXLA - Axcella Health Inc.
+LIPO - Lipella Pharmaceuticals Inc.
+ATHE - Alterity Therapeutics Limited
+SONN - Sonnet BioTherapeutics Holdings, Inc.
+CANF - Can-Fite BioPharma Ltd.
+IMRN - Immuron Limited
+XRTX - XORTX Therapeutics Inc.
+AMTI - Applied Molecular Transport Inc.
+JAGX - Jaguar Health, Inc.
+APGN - Apexigen, Inc.
+ADXN - Addex Therapeutics Ltd
+GTBP - GT Biopharma, Inc.
+FNCH - Finch Therapeutics Group, Inc.
+IMNN - Imunon, Inc.
+BRTX - BioRestorative Therapies, Inc.
+VRPX - Virpax Pharmaceuticals, Inc.
+ELOX - Eloxx Pharmaceuticals, Inc.
+TNXP - Tonix Pharmaceuticals Holding Corp.
+CDIO - Cardio Diagnostics Holdings, Inc.
+CVKD - Cadrenal Therapeutics, Inc.
+PCSA - Processa Pharmaceuticals, Inc.
+TRVN - Trevena, Inc.
+PXMD - PaxMedica, Inc.
+MNPR - Monopar Therapeutics Inc.
+TOVX - Theriva Biologics, Inc.
+PULM - Pulmatrix, Inc.
+ATHX - Athersys, Inc.
+INFI - Infinity Pharmaceuticals, Inc.
+SXTP - 60 Degrees Pharmaceuticals, Inc.
+DRUG - Bright Minds Biosciences Inc.
+CWBR - CohBar, Inc.
+CYCN - Cyclerion Therapeutics, Inc.
+HOTH - Hoth Therapeutics, Inc.
+TCON - TRACON Pharmaceuticals, Inc.
+CNSP - CNS Pharmaceuticals, Inc.
+BPTS - Biophytis S.A.
+ATXI - Avenue Therapeutics, Inc.
+APM - Aptorum Group Limited
+PTIX - Protagenic Therapeutics, Inc.
+LEXX - Lexaria Bioscience Corp.
+NAVB - Navidea Biopharmaceuticals, Inc.
+GRI - GRI Bio, Inc.
+TTNP - Titan Pharmaceuticals, Inc.
+ALRN - Aileron Therapeutics, Inc.
+IBIO - iBio, Inc.
+WINT - Windtree Therapeutics, Inc.
+XCUR - Exicure, Inc.
+CELZ - Creative Medical Technology Holdings, Inc.
+TPST - Tempest Therapeutics, Inc.
+VRAX - Virax Biolabs Group Limited
+DFFN - Diffusion Pharmaceuticals Inc.
+ICU - SeaStar Medical Holding Corporation
+NEXI - NexImmune, Inc.
+ABVC - ABVC BioPharma, Inc.
+CYCC - Cyclacel Pharmaceuticals, Inc.
+OGEN - Oragenics, Inc.
+TENX - Tenax Therapeutics, Inc.
+SILO - Silo Pharma, Inc.
+CING - Cingulate Inc.
+PSTV - Plus Therapeutics, Inc.
+KTRA - Kintara Therapeutics, Inc.
+QNRX - Quoin Pharmaceuticals, Ltd.
+ENVB - Enveric Biosciences, Inc.
+XBIO - Xenetic Biosciences, Inc.
+ARTL - Artelo Biosciences, Inc.
+HILS - Hillstream BioPharma, Inc.
+ENSC - Ensysce Biosciences, Inc.
+QLGN - Qualigen Therapeutics, Inc.
+XTLB - XTL Biopharmaceuticals Ltd.
+PALI - Palisade Bio, Inc.
+BVXV - BiondVax Pharmaceuticals Ltd.
+LIXT - Lixte Biotechnology Holdings, Inc.
+PBLA - Panbela Therapeutics, Inc.
+REVB - Revelation Biosciences, Inc.
+BLPH - Bellerophon Therapeutics, Inc.
+SNPX - Synaptogenix, Inc.
+SNGX - Soligenix, Inc.
+BXRX - Baudax Bio, Inc.
+TMBR - Timber Pharmaceuticals, Inc.
+PHIO - Phio Pharmaceuticals Corp.
+KPRX - Kiora Pharmaceuticals, Inc.
+NVIV - InVivo Therapeutics Holdings Corp.
+ZVSA - ZyVersa Therapeutics, Inc.
+ATNF - 180 Life Sciences Corp.
+ACGN - Aceragen, Inc.
+FRTX - Fresh Tracks Therapeutics, Inc.
+DRMA - Dermata Therapeutics, Inc.
+CFRX - ContraFect Corporation
+APVO - Aptevo Therapeutics Inc.
+BPTH - Bio-Path Holdings, Inc.
+AMPE - Ampio Pharmaceuticals, Inc.
+CMND - Clearmind Medicine Inc.
+RNAZ - TransCode Therapeutics, Inc.
+INM - InMed Pharmaceuticals Inc.
+HSTO - Histogen Inc.
+CYTO - Altamira Therapeutics Ltd.
+NBY - NovaBay Pharmaceuticals, Inc.
+KRBP - Kiromic BioPharma, Inc.
+TCBP - TC Biopharm (Holdings) Plc
+ADTX - Aditxt, Inc.
+SLRX - Salarius Pharmaceuticals, Inc.
+FWBI - First Wave BioPharma, Inc.
+ALLR - Allarity Therapeutics, Inc.
+AVTX - Avalo Therapeutics, Inc.
+GLMD - Galmed Pharmaceuticals Ltd.
+NBSE - NeuBase Therapeutics, Inc.
+SPRC - SciSparc Ltd.
+BDRX - Biodexa Pharmaceuticals PLC
