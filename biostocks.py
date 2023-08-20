@@ -11,6 +11,138 @@ import base64
 from ta.volatility import BollingerBands
 from ta.trend import MACD, EMAIndicator, SMAIndicator
 from ta.momentum import RSIIndicator
+import yahooquery as yq
+from yahooquery import Ticker
+
+def financial_statements_eda(ticker_symbol):
+    # Fetch general stock details
+    info = Ticker(ticker_symbol).summary_detail[ticker_symbol]
+
+    # Calculate EPS
+    eps = None
+    if 'previousClose' in info and 'trailingPE' in info and info['trailingPE'] != 0:
+        eps = info['previousClose'] / info['trailingPE']
+
+    # Fetch data
+    ticker = yq.Ticker(ticker_symbol)
+
+    # Balance Sheet
+    balance_sheet = ticker.balance_sheet(frequency="q")
+    balance_sheet = balance_sheet.set_index('asOfDate').sort_index()
+    # balance_sheet.columns
+    # Cash Flow
+    cash_flow = ticker.cash_flow(frequency="q")
+    cash_flow = cash_flow.set_index('asOfDate').sort_index()
+    # cash_flow.columns
+    # Income Statement
+    income_statement = ticker.income_statement(frequency="q")
+    income_statement = income_statement.set_index('asOfDate').sort_index()
+    # st.write(income_statement.columns)
+
+    # Create subplots
+    fig = make_subplots(rows=3, cols=1,
+                        subplot_titles=("Balance Sheet", "Cash Flow", "Income Statement"))
+
+    # Add traces for Balance Sheet
+    fig.add_trace(go.Scatter(x=balance_sheet.index, y=balance_sheet['TotalAssets'], mode='lines+markers', name='Total Assets'), row=1, col=1)
+    fig.add_trace(go.Scatter(x=balance_sheet.index, y=balance_sheet['TotalLiabilitiesNetMinorityInterest'], mode='lines+markers', name='Total Liabilities NMI'), row=1, col=1)
+
+    # Add traces for Cash Flow
+    fig.add_trace(go.Scatter(x=cash_flow.index, y=cash_flow['OperatingCashFlow'], mode='lines+markers', name='Operating Cash Flow'), row=2, col=1)
+    fig.add_trace(go.Scatter(x=cash_flow.index, y=cash_flow['InvestingCashFlow'], mode='lines+markers', name='Investing Cash Flow'), row=2, col=1)
+
+    # Add traces for Income Statement
+    fig.add_trace(go.Scatter(x=income_statement.index, y=income_statement['TotalRevenue'], mode='lines+markers', name='Total Revenue'), row=3, col=1)
+    fig.add_trace(go.Scatter(x=income_statement.index, y=income_statement['NetIncome'], mode='lines+markers', name='Net Income'), row=3, col=1)
+
+    # Set layout
+    fig.update_layout(
+        title_text=f'Financial Statements for {ticker_symbol}',
+        template="plotly_dark", height=900,
+        legend_title="Legend",
+        legend=dict(x=1.0, y=0.5),
+    )
+
+    # Extracting necessary values for ratios
+    net_income = income_statement['NetIncome'].iloc[-1]  # Most recent quarter's net income
+    total_debt = balance_sheet['TotalLiabilitiesNetMinorityInterest'].iloc[-1]  # Most recent quarter's total debt
+    beginning_equity = balance_sheet['TotalAssets'].iloc[0] - balance_sheet['TotalLiabilitiesNetMinorityInterest'].iloc[0]
+    ending_equity = balance_sheet['TotalAssets'].iloc[-1] - balance_sheet['TotalLiabilitiesNetMinorityInterest'].iloc[-1]
+    average_equity = (beginning_equity + ending_equity) / 2
+
+    # Calculating Debt/Equity Ratio
+    if total_debt and average_equity:  # Ensure values are not zero to avoid ZeroDivisionError
+        debt_equity_ratio = total_debt / average_equity
+    else:
+        debt_equity_ratio = 'N/A'
+
+    # Calculating Return on Equity (RoE)
+    if net_income and average_equity:  # Ensure values are not zero to avoid ZeroDivisionError
+        roe_ratio = net_income / average_equity
+    else:
+        roe_ratio = 'N/A'
+
+    pe_ratio = info.get('trailingPE', 'N/A')
+
+    col1, col2, col3, col4 = st.columns(4)
+    col1.subheader("Debt/Equity Ratio:")
+    col1.write(f"<h6 style='font-size:80px'>{debt_equity_ratio:.2f}</h6>", unsafe_allow_html=True)
+
+    col2.subheader("RoE Ratio:")
+    col2.write(f"<h6 style='font-size:80px'>{roe_ratio:.2f}</h6>", unsafe_allow_html=True)
+
+    col3.subheader("EPS:")
+    col3.write(f"<h6 style='font-size:80px'>{round(eps, 2) if eps is not None else 'N/A'}</h6>", unsafe_allow_html=True)
+
+    col4.subheader("P/E Ratio (Trailing)")
+    col4.write(f"<h6 style='font-size:80px'>{round(pe_ratio, 2) if pe_ratio != 'N/A' else 'N/A'}</h6>", unsafe_allow_html=True)
+
+    def evaluate_stock(debt_equity, roe, eps):
+        evaluations = []
+
+        # Evaluate Debt/Equity
+        if debt_equity < 0.5:
+            evaluations.append("Low leverage: More financially stable.")
+        elif 0.5 <= debt_equity < 1:
+            evaluations.append("Moderate leverage: Typical for many companies.")
+        else:
+            evaluations.append("High leverage: Risky, especially in economic downturns.")
+
+        # Evaluate RoE
+        if roe > 15:
+            evaluations.append("High Return on Equity: Company effectively uses its equity.")
+        elif 10 < roe <= 15:
+            evaluations.append("Moderate Return on Equity.")
+        else:
+            evaluations.append("Low Return on Equity: Profitability or leverage issues.")
+
+        # Evaluate EPS
+        if eps:
+            evaluations.append("Positive EPS: Company is profitable.")
+        else:
+            evaluations.append("Data is not available or there is potential future growth or current profitability issues.")
+        # # Evaluate P/E Ratio
+        # if pe_ratio < industry_average_pe:
+        #     evaluations.append("P/E below industry average: Potentially undervalued.")
+        # elif pe_ratio > industry_average_pe:
+        #     evaluations.append("P/E above industry average: Potentially overvalued.")
+
+        return evaluations
+
+    with st.expander("Financial Metrics Explained"):
+        st.markdown("""
+        - **Debt/Equity Ratio**: Represents a company's financial leverage. It's the proportion of equity and debt a company is using to finance its assets. A high ratio suggests that a company has aggressively financed its growth with debt.
+        - **Return on Equity (RoE)**: Measures a company's profitability by revealing how much profit a company generates with the money shareholders have invested.
+        - **EPS (Earnings Per Share)**: Represents the portion of a company's profit allocated to each outstanding share of common stock.
+        - **P/E Ratio (Trailing)**: Represents the valuation ratio of a company's current share price compared to its per-share earnings over the past 12 months.
+        """)
+
+    with st.expander("Insights! __not promoting/ taking any responsibility regarding your action!__"):
+        evaluations = evaluate_stock(debt_equity_ratio, roe_ratio, eps)
+        for eval in evaluations:
+            st.write(eval)
+
+    return fig
 
 # Fetch stock data function
 def fetch_data(symbol, start_date=None, end_date=None):
@@ -24,6 +156,7 @@ def calculate_trend(data, start_date, end_date):
     """Calculate percentage trend over the given date range."""
     start_date_tz = pytz.timezone('America/New_York').localize(datetime.datetime.combine(start_date, datetime.time()))
     end_date_tz = pytz.timezone('America/New_York').localize(datetime.datetime.combine(end_date, datetime.time()))
+
     closest_start = data.index[data.index >= start_date_tz].min()
     closest_end = data.index[data.index <= end_date_tz].max()
 
@@ -140,10 +273,13 @@ if view_option == "Basic":
                       yaxis_title="Price",
                       yaxis2=dict(overlaying='y', side='right', title="Volume"),
                       legend_title="Legend",
-                      legend=dict(x=1.15, y=0.5),
+                      legend=dict(x=1.10, y=0.5),
                       height=800)
 
     st.plotly_chart(fig, use_container_width=True)
+
+    eda_fig = financial_statements_eda(selected_stock)
+    st.plotly_chart(eda_fig, use_container_width=True)
 
 elif view_option == "Advanced":
     # st.header("Stock Comparison")
@@ -206,7 +342,7 @@ elif view_option == "Advanced":
     col1.subheader("Stock Trends")
     col1.write("This stock trends are based on the start and end dates.")
     col1.write("So, this is the __overall difference__.")
-    col1.table(pd.DataFrame(eda_data))
+    col1.table(pd.DataFrame(eda_data).sort_values(by="Trend (%)", ascending=False).reset_index(drop=True))
 
     # Displaying the correlation matrix
     col2.subheader("Correlation Matrix of Stocks")
