@@ -184,7 +184,7 @@ def get_file_download_link(file_path, filename):
 st.set_page_config(layout="wide")
 
 st.image("logo.png")
-st.title("Stock Data Dashboard")
+st.title("Stock Data Dashboard :chart_with_upwards_trend::bar_chart:")
 
 # User sidebar input for tickers
 manual_tickers = st.sidebar.text_input("Enter stock tickers separated by a comma, for examples: TSLA, GOOG, AAPL, etc.", "").split(", ")
