@@ -170,7 +170,7 @@ def calculate_trend(data, start_date, end_date):
     trend = (data.loc[closest_end, "Close"] - data.loc[closest_start, "Close"]) / data.loc[closest_start, "Close"]
     trend = round(trend * 100,2)
 
-    return "{:.2f}".format(trend)  # Convert trend to percentage
+    return trend  # Convert trend to percentage
 
 def process_uploaded_file(uploaded_file):
     try:
