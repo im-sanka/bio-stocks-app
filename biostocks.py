@@ -102,34 +102,38 @@ def financial_statements_eda(ticker_symbol):
 
         # Evaluate Debt/Equity
         if debt_equity < 0.5:
-            evaluations.append("Low leverage: More financially stable.")
+            evaluations.append("Low leverage **(debt equity < 0.5)**: More financially stable.")
         elif 0.5 <= debt_equity < 1:
-            evaluations.append("Moderate leverage: Typical for many companies.")
+            evaluations.append("Moderate leverage **(0.5 <= debt_equity < 1)**: Typical for many companies.")
         else:
-            evaluations.append("High leverage: Risky, especially in economic downturns.")
+            evaluations.append("High leverage **(debt_equity > 1)**: Risky, especially in economic downturns.")
 
         # Evaluate RoE
         if roe > 15:
-            evaluations.append("High Return on Equity: Company effectively uses its equity.")
+            evaluations.append("High Return on Equity **(RoE > 15)**: Company effectively uses its equity.")
         elif 10 < roe <= 15:
-            evaluations.append("Moderate Return on Equity.")
+            evaluations.append("Moderate Return on Equity. **(10 < RoE <= 15)**")
         else:
-            evaluations.append("Low Return on Equity: Profitability or leverage issues.")
+            evaluations.append("Low Return on Equity **(RoE < 15)**: Profitability or leverage issues.")
 
         # Evaluate EPS
         if eps:
-            evaluations.append("Positive EPS: Company is profitable.")
+            evaluations.append("**Positive EPS**: Company is profitable.")
         else:
-            evaluations.append("Data is not available or there is potential future growth or current profitability issues.")
-        # # Evaluate P/E Ratio
-        # if pe_ratio < industry_average_pe:
-        #     evaluations.append("P/E below industry average: Potentially undervalued.")
-        # elif pe_ratio > industry_average_pe:
-        #     evaluations.append("P/E above industry average: Potentially overvalued.")
-
+            evaluations.append("**EPS data is not available or negative value** indicates potential future growth or there is an issue in current profitability.")
+        # Evaluate P/E Ratio
+        col1,col2,col3 = st.columns(3)
+        industry_average_pe = col1.number_input("Please input your five-year projected growth rate (the default is 12.8):", 12.8)
+        try:
+            if pe_ratio < industry_average_pe:
+                evaluations.append(f"**P/E below projected growth rate ({industry_average_pe}%)**: Potentially undervalued.")
+            elif pe_ratio > industry_average_pe:
+                evaluations.append(f"**P/E above projected growth rate ({industry_average_pe}%)**: Potentially overvalued.")
+        except:
+            evaluations.append(f"**P/E ratio** is not available (N/A)")
         return evaluations
 
-    with st.expander("Financial Metrics Explained"):
+    with st.expander("**Explanation About Financial Metrics**"):
         st.markdown("""
         - **Debt/Equity Ratio**: Represents a company's financial leverage. It's the proportion of equity and debt a company is using to finance its assets. A high ratio suggests that a company has aggressively financed its growth with debt.
         - **Return on Equity (RoE)**: Measures a company's profitability by revealing how much profit a company generates with the money shareholders have invested.
@@ -227,6 +231,7 @@ if view_option == "Basic":
     data['bb_l'] = bb_indicator.bollinger_lband()
     # MACD
     data['macd'] = MACD(data.Close).macd()
+    data['macd_signal'] = MACD(data.Close).macd_signal()
     # RSI
     data['rsi'] = RSIIndicator(data.Close).rsi()
     # SMA
@@ -255,15 +260,18 @@ if view_option == "Basic":
     if st.checkbox("Show Bollinger Bands"):
         fig.add_trace(go.Scatter(x=data.index, y=data["bb_h"], mode='lines', name='Upper Band', line=dict(dash='dash')))
         fig.add_trace(go.Scatter(x=data.index, y=data["bb_l"], mode='lines', name='Lower Band', line=dict(dash='dash')))
-    if st.checkbox("Show MACD"):
+    if st.checkbox("Show Moving average convergence/divergence (MACD)"):
         fig.add_trace(go.Scatter(x=data.index, y=data["macd"], mode='lines', name='MACD'))
-    if st.checkbox("Show RSI"):
+        fig.add_trace(go.Scatter(x=data.index, y=data["macd_signal"], mode='lines', name='Signal-MACD'))
+    if st.checkbox("Show Relative strength index (RSI)"):
         fig.add_trace(go.Scatter(x=data.index, y=data["rsi"], mode='lines', name='RSI'))
-    if st.checkbox("Show SMA"):
+        fig.add_trace(go.Scatter(x=data.index, y=[30] * len(data.index), mode='lines', name='RSI=30', line=dict(dash='dash')))
+        fig.add_trace(go.Scatter(x=data.index, y=[70] * len(data.index), mode='lines', name='RSI=70', line=dict(dash='dash')))
+    if st.checkbox("Show Simple moving average (SMA) - fixed window"):
         fig.add_trace(go.Scatter(x=data.index, y=data["sma"], mode='lines', name='SMA'))
-    if st.checkbox("Show EMA"):
+    if st.checkbox("Show Exponential moving average (EMA)"):
         fig.add_trace(go.Scatter(x=data.index, y=data["ema"], mode='lines', name='EMA'))
-    if st.checkbox("Show Moving Average"):
+    if st.checkbox("Show Adjustable Moving Average"):
         for window in selected_ma_windows:
             fig.add_trace(go.Scatter(x=data.index, y=data[f"MA{window}"], mode='lines', name=f"MA{window}"))
 
@@ -276,7 +284,20 @@ if view_option == "Basic":
                       legend=dict(x=1.10, y=0.5),
                       height=800)
 
+    with st.expander("__Explanation about indicators:__"):
+        st.markdown("""
+            - Candlestick chart indicates the fluctuation of stock price each day.
+            - Close history provides a line from each day stock price after closing.
+            - Bollinger bands show overbought (upper)/ oversold (lower) of the stocks.
+            - Moving average convergence/divergence (MACD) line crosses from below to above the signal line = bullish (uptrend). Value less than zero line gives stronger signals.
+            - Relative strength index (RSI) indicates buy/sell signal. High (>70) can indicate bearish signal while low (<30) indicates bullish signal.
+            - Simple moving average (SMA) shows a moving average (14 datapoints/prices) and put equal weight.
+            - Exponential moving average (EMA) is a moving average (14 datapoints/prices) and gives exponential weight to current/recent data.
+            ---""")
     st.plotly_chart(fig, use_container_width=True)
+
+
+
 
     eda_fig = financial_statements_eda(selected_stock)
     st.plotly_chart(eda_fig, use_container_width=True)
