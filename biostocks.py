@@ -168,7 +168,7 @@ def calculate_trend(data, start_date, end_date):
         return "Not enough data"
 
     trend = (data.loc[closest_end, "Close"] - data.loc[closest_start, "Close"]) / data.loc[closest_start, "Close"]
-    trend = round(trend,2)
+    trend = round(trend*100,2)
 
     return trend  # Convert trend to percentage
 
@@ -201,11 +201,13 @@ uploaded_file = st.sidebar.file_uploader("Or upload a file with stock tickers", 
 if uploaded_file:
     uploaded_tickers = process_uploaded_file(uploaded_file)
     stock_symbols = list(set(manual_tickers + uploaded_tickers))
+    stock_symbols = [(ticker, "Unknown") for ticker in stock_symbols]  # Assuming the uploaded file only has tickers
 elif manual_tickers and manual_tickers[0]:
     stock_symbols = manual_tickers
+    stock_symbols = [(ticker, "Unknown") for ticker in stock_symbols]  # Assuming manual tickers only have tickers
 else:
     with open("stocks_list.txt", "r") as file:
-        stock_symbols = [line.strip().split(" - ")[0] for line in file]
+        stock_symbols = [tuple(line.strip().split(" - ")) for line in file]  # This gives [(ticker, company_name), ...]
 
 download_link = get_file_download_link("stocks_list.txt", "the list example here!")
 st.sidebar.markdown(download_link, unsafe_allow_html=True)
@@ -223,8 +225,7 @@ selected_ma_windows = st.sidebar.multiselect("Select window sizes for moving ave
 
 if view_option == "Basic":
     # st.header("Single Stock Exploration")
-
-    selected_stock = st.selectbox("Select a stock symbol:", stock_symbols).split(" - ")[0]
+    selected_stock = st.selectbox("Select a stock symbol:", [f"{s[0]} - {s[1]}" for s in stock_symbols]).split(" - ")[0]
     data = fetch_data(selected_stock, start_date, end_date)
 
     # Bollinger bands
@@ -262,7 +263,7 @@ if view_option == "Basic":
     if st.checkbox("Show Bollinger Bands"):
         fig.add_trace(go.Scatter(x=data.index, y=data["bb_h"], mode='lines', name='Upper Band', line=dict(dash='dash')))
         fig.add_trace(go.Scatter(x=data.index, y=data["bb_l"], mode='lines', name='Lower Band', line=dict(dash='dash')))
-    if st.checkbox("Show Moving average convergence/divergence (MACD)"):
+    if st.checkbox("Show Moving average convergence/divergence (MACD) - __recommendation: use this without ticking other indicators.__"):
         fig.add_trace(go.Scatter(x=data.index, y=data["macd"], mode='lines', name='MACD'))
         fig.add_trace(go.Scatter(x=data.index, y=data["macd_signal"], mode='lines', name='Signal-MACD'))
     if st.checkbox("Show Relative strength index (RSI)"):
@@ -277,7 +278,7 @@ if view_option == "Basic":
         for window in selected_ma_windows:
             fig.add_trace(go.Scatter(x=data.index, y=data[f"MA{window}"], mode='lines', name=f"MA{window}"))
 
-    fig.add_trace(go.Bar(x=data.index, y=data["Volume"], yaxis="y2", name="Volume", opacity=0.6))
+    fig.add_trace(go.Bar(x=data.index, y=data["Volume"], yaxis="y2", name="Volume", opacity=0.6, marker=dict(color='lightblue')))
     fig.update_layout(title=f"{selected_stock} Indicators Over Time",
                       xaxis_title="Date",
                       yaxis_title="Price",
@@ -306,8 +307,12 @@ if view_option == "Basic":
 
 elif view_option == "Advanced":
     # st.header("Stock Comparison")
-
-    selected_stocks = [stock.split(" - ")[0] for stock in st.multiselect("Select stocks for comparison:", stock_symbols)]
+    selected_options = st.multiselect(
+        'Select stocks for comparison:',
+        [f"{s[0]} - {s[1]}" for s in stock_symbols]
+    )
+    selected_stocks = [stock.split(' - ')[0] for stock in selected_options]
+    # selected_stocks = [stock.split(" - ")[0] for stock in st.multiselect("Select stocks for comparison:", stock_symbols)]
 
     comparison_choices = ["Open", "Close", "Margin (High - Low)"] + [f"MA{window}" for window in selected_ma_windows]
     comparison_choice = st.selectbox("Comparison data:", comparison_choices)
@@ -354,7 +359,6 @@ elif view_option == "Advanced":
         eda_data["Stock"].append(stock)
         eda_data["Trend (%)"].append(trend)
 
-
     fig.update_layout(yaxis_title=comparison_choice,
                       legend_title="Legend",
                       legend=dict(x=1.1, y=1),
@@ -366,7 +370,14 @@ elif view_option == "Advanced":
     col1.subheader("Stock Trends")
     col1.write("This stock trends are based on the start and end dates.")
     col1.write("So, this is the __overall difference__.")
-    col1.table(pd.DataFrame(eda_data).sort_values(by="Trend (%)", ascending=False).reset_index(drop=True))
+
+    eda_data = pd.DataFrame(eda_data).sort_values(by="Trend (%)", ascending=False).reset_index(drop=True)
+    eda_data['Trend (%)'] = eda_data['Trend (%)'].apply(lambda x: round(x, 2))
+
+    ticker_to_fullname = {s[0]: f"{s[0]} - {s[1]}" for s in stock_symbols}
+    eda_data["Stock"] = eda_data["Stock"].map(ticker_to_fullname)
+
+    col1.write(eda_data)
 
     # Displaying the correlation matrix
     col2.subheader("Correlation matrix between selected stocks")
