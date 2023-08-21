@@ -168,7 +168,9 @@ def calculate_trend(data, start_date, end_date):
         return "Not enough data"
 
     trend = (data.loc[closest_end, "Close"] - data.loc[closest_start, "Close"]) / data.loc[closest_start, "Close"]
-    return trend * 100  # Convert trend to percentage
+    trend = round(trend * 100,2)
+
+    return "{:.2f}".format(trend)  # Convert trend to percentage
 
 def process_uploaded_file(uploaded_file):
     try:
@@ -352,6 +354,7 @@ elif view_option == "Advanced":
         eda_data["Stock"].append(stock)
         eda_data["Trend (%)"].append(trend)
 
+
     fig.update_layout(yaxis_title=comparison_choice,
                       legend_title="Legend",
                       legend=dict(x=1.1, y=1),
@@ -366,7 +369,7 @@ elif view_option == "Advanced":
     col1.table(pd.DataFrame(eda_data).sort_values(by="Trend (%)", ascending=False).reset_index(drop=True))
 
     # Displaying the correlation matrix
-    col2.subheader("Correlation Matrix of Stocks")
+    col2.subheader("Correlation matrix between selected stocks")
     # Correlation Matrix
     if len(selected_stocks) > 1:
         dataframes = []
@@ -381,10 +384,27 @@ elif view_option == "Advanced":
         # Making the upper triangle of the matrix to have NaN values
         mask = correlation_matrix.where(np.tril(np.ones(correlation_matrix.shape)).astype(bool))
 
-        fig_corr = go.Figure(go.Heatmap(z=mask, x=mask.columns, y=mask.columns, colorscale='Inferno', zmin=-1, zmax=1))
+        annotations = []
+        for i, row in enumerate(mask.values):
+            for j, value in enumerate(row):
+                if not np.isnan(value):
+                    annotations.append({
+                        "x": mask.columns[j],
+                        "y": mask.columns[i],
+                        "xref": "x",
+                        "yref": "y",
+                        "text": str(round(value, 2)),  # You can format this as you see fit
+                        "showarrow": False,
+                        "font": {
+                            "color": "black"  # You can adjust this for better visibility based on your colorscale
+                        }
+                })
 
-        fig_corr.update_layout(title="This matrix shows the correlation in 'Close' data between stocks.",
-                               margin=dict(t=50), width=400, height=400)  # Adjust width and height as needed
+        fig_corr = go.Figure(go.Heatmap(z=mask, x=mask.columns, y=mask.columns, colorscale='Sunset', zmin=-1, zmax=1))
+
+        fig_corr.update_layout(title="This matrix shows 'Close' data from selected stocks",
+                               margin=dict(t=50), width=400, height=400,
+                               annotations=annotations)  # Adjust width and height as needed
         col2.plotly_chart(fig_corr, use_container_width=True)
 
 # Prediction
