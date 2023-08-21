@@ -224,7 +224,7 @@ default_ma_windows = [1, 3, 5, 7, 10, 20, 60, 120]
 selected_ma_windows = st.sidebar.multiselect("Select window sizes for moving averages:", default_ma_windows, default=default_ma_windows)
 
 if view_option == "Basic":
-    # st.header("Single Stock Exploration")
+    st.header("Basic - Single Stock Analysis")
     selected_stock = st.selectbox("Select a stock symbol:", [f"{s[0]} - {s[1]}" for s in stock_symbols]).split(" - ")[0]
     data = fetch_data(selected_stock, start_date, end_date)
 
@@ -306,7 +306,7 @@ if view_option == "Basic":
     st.plotly_chart(eda_fig, use_container_width=True)
 
 elif view_option == "Advanced":
-    # st.header("Stock Comparison")
+    st.header("Advanced - Multi-stock Analysis")
     selected_options = st.multiselect(
         'Select stocks for comparison:',
         [f"{s[0]} - {s[1]}" for s in stock_symbols]
