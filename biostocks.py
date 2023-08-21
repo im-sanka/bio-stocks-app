@@ -403,7 +403,7 @@ elif view_option == "Advanced":
         fig_corr = go.Figure(go.Heatmap(z=mask, x=mask.columns, y=mask.columns, colorscale='Sunset', zmin=-1, zmax=1))
 
         fig_corr.update_layout(title="This matrix shows 'Close' data from selected stocks",
-                               margin=dict(t=50), width=400, height=400,
+                               margin=dict(t=50), width=400, height=800,
                                annotations=annotations)  # Adjust width and height as needed
         col2.plotly_chart(fig_corr, use_container_width=True)
 
