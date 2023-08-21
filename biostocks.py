@@ -168,7 +168,7 @@ def calculate_trend(data, start_date, end_date):
         return "Not enough data"
 
     trend = (data.loc[closest_end, "Close"] - data.loc[closest_start, "Close"]) / data.loc[closest_start, "Close"]
-    trend = round(trend * 100,2)
+    trend = round(trend,2)
 
     return trend  # Convert trend to percentage
 
