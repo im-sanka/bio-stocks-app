@@ -223,6 +223,8 @@ view_option = st.sidebar.selectbox("Choose view:", ["Basic", "Advanced","Analyti
 default_ma_windows = [1, 3, 5, 7, 10, 20, 60, 120]
 selected_ma_windows = st.sidebar.multiselect("Select window sizes for moving averages:", default_ma_windows, default=default_ma_windows)
 
+st.sidebar.write(f"Backstory why I made this? Check [HERE](https://medium.com/@im-sanka/side-project-2-bio-stocks-acebd605dc52)!")
+
 if view_option == "Basic":
     st.header("Basic - Single Stock Analysis")
     selected_stock = st.selectbox("Select a stock symbol:", [f"{s[0]} - {s[1]}" for s in stock_symbols]).split(" - ")[0]
