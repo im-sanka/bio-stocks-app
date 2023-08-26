@@ -1,124 +1,64 @@
 import streamlit as st
-import numpy as np
-from statsmodels.tsa.arima.model import ARIMA
+import yfinance as yf
+import pandas as pd
+import matplotlib.pyplot as plt
 from pmdarima import auto_arima
-import plotly.graph_objs as go
-import re
-from sklearn.metrics import mean_squared_error, mean_absolute_error
-import math
 
-def prediction(data):
+st.title('Stock Predictor with Auto ARIMA')
 
-    # Initialize session state if it hasn't been initialized
-    if 'model_summaries' not in st.session_state:
-        st.session_state.model_summaries = {}
+# User input for stock ticker
+ticker = st.text_input("Enter Stock Ticker (e.g., AAPL, MSFT):", "AAPL")
 
-    # Allow the user to select the percentage of training data
-    training_percentage = st.slider('Select percentage of training data:', min_value=50, max_value=90, value=80)
+# Download data
+st.write(f"Downloading data for {ticker}...")
+data = yf.download(ticker, start='2020-01-01', end='2023-01-01')
+st.write("Data downloaded.")
 
-    # Calculate the log of data
-    df_log = np.log(data['Close'])
+# Show raw data
+if st.checkbox("Show Raw Data"):
+    st.dataframe(data)
 
-    # Calculate the index to split the data
-    split_index = int(len(df_log) * (training_percentage / 100.0))
+# Function to plot predictions
+def plot_predictions(y_test, y_pred, future_index):
+    fig, ax = plt.subplots()
+    ax.plot(y_test.index, y_test.values, color='blue', label='Actual')
+    ax.plot(future_index, y_pred, color='red', linestyle='dashed', label='Predicted')
+    ax.legend()
+    return fig
 
-    # Split data
-    train_data, test_data = df_log[:split_index], df_log[split_index:]
+# Configuration for auto_arima
+st.sidebar.header("Auto ARIMA Configuration")
+start_p = st.sidebar.slider("start_p", 1, 5, 1)
+start_q = st.sidebar.slider("start_q", 1, 5, 1)
+max_p = st.sidebar.slider("max_p", 1, 5, 3)
+max_q = st.sidebar.slider("max_q", 1, 5, 3)
+m = st.sidebar.slider("Seasonality (m)", 1, 24, 12)
+start_P = st.sidebar.slider("start_P", 0, 5, 0)
+d = st.sidebar.slider("d", 0, 2, 1)
+D = st.sidebar.slider("D", 0, 2, 1)
+trace = st.sidebar.checkbox("Trace", True)
+error_action = st.sidebar.selectbox("error_action", ["ignore", "warn", "raise", "trace"])
+suppress_warnings = st.sidebar.checkbox("Suppress Warnings", True)
+stepwise = st.sidebar.checkbox("Stepwise", True)
 
-    # Button to generate AutoARIMA models
-    if st.subheader('Generate AutoARIMA Models'):
+# Apply auto_arima
+if st.button("Run Auto ARIMA"):
+    st.write("Running Auto ARIMA...")
+    stepwise_model = auto_arima(data['Close'], start_p=start_p, start_q=start_q,
+                                max_p=max_p, max_q=max_q, m=m,
+                                start_P=start_P, seasonal=True,
+                                d=d, D=D, trace=trace,
+                                error_action=error_action,
+                                suppress_warnings=suppress_warnings,
+                                stepwise=stepwise)
 
-        model_configs = [
-            (0,1,0),
-            (0,1,1),
-            (1,1,0),
-            (1,1,1)
-        ]
+    st.write(f"AIC: {stepwise_model.aic()}")
 
-        model_summaries = {}
+    # Make prediction
+    n_periods = st.slider("Select Number of Periods for Prediction:", 10, 100, 30)
+    future_forecast, conf_int = stepwise_model.predict(n_periods=n_periods, return_conf_int=True)
+    future_index = pd.date_range(data.index[-1], periods=n_periods+1, closed='right')
 
-        for config in model_configs:
-            model = auto_arima(train_data, start_p=config[0], start_q=config[2],
-                               max_p=3, max_q=3,
-                               m=1, d=config[1],
-                               seasonal=False,
-                               trace=False,
-                               error_action='ignore',
-                               suppress_warnings=True,
-                               stepwise=True)
-
-            model_summaries[f"ARIMA{config}"] = model
-
-        st.session_state.model_summaries = model_summaries
-
-    if st.session_state.model_summaries:
-        selected_model_str = st.selectbox('Select the ARIMA model:', list(st.session_state.model_summaries.keys()))
-        selected_model_tuple = tuple(map(int, re.findall("\d+", selected_model_str)))
-
-
-        # Fit ARIMA model
-        model = ARIMA(train_data, order=selected_model_tuple)
-        fitted = model.fit()
-
-        # Get forecast
-        forecast_results = fitted.get_forecast(steps=len(test_data))
-        fc = forecast_results.predicted_mean
-        se = forecast_results.se_mean
-        conf = forecast_results.conf_int(alpha=0.05)
-
-        # Align time index
-        fc.index = test_data.index
-        lower_series = conf.iloc[:, 0]
-        upper_series = conf.iloc[:, 1]
-        lower_series.index = test_data.index
-        upper_series.index = test_data.index
-
-        # Create Plotly figure for ARIMA predictions
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(x=train_data.index, y=train_data, mode='lines', name='Train Data'))
-        fig.add_trace(go.Scatter(x=test_data.index, y=test_data, mode='lines', name='Test Data'))
-        fig.add_trace(go.Scatter(x=fc.index, y=fc, mode='lines', name='Predicted'))
-        fig.add_trace(go.Scatter(x=lower_series.index, y=lower_series, mode='lines', name='Lower CI', line=dict(dash='dash', color='green')))
-        fig.add_trace(go.Scatter(x=upper_series.index, y=upper_series, mode='lines', name='Upper CI', line=dict(dash='dash', color='green')))
-        fig.update_layout(title='ARIMA Forecast', xaxis_title='Date', yaxis_title='Log of Closing Prices')
-        st.plotly_chart(fig, use_container_width=True)
-
-
-        st.subheader("Forecast evaluation")
-
-        mse = mean_squared_error(test_data, fc)
-        st.write(f'MSE (Mean Squared Error): {round(mse, 4)}')
-        if mse < 0.05:
-            st.info('The MSE is low, indicating the model has a good fit to the data.')
-        elif mse < 0.2:
-            st.info('The MSE is moderate, which suggests the model fits the data fairly well.')
-        else:
-            st.info('The MSE is high, meaning the model may not fit the data well.')
-
-        mae = mean_absolute_error(test_data, fc)
-        st.write(f'MAE (Mean Absolute Error): {round(mae, 4)}')
-        if mae < 0.05:
-            st.info('The MAE is low, which means the average prediction error is small.')
-        elif mae < 0.2:
-            st.info('The MAE is moderate, so the model generally makes acceptable predictions.')
-        else:
-            st.info('The MAE is high, indicating the model may have issues with prediction accuracy.')
-
-        rmse = math.sqrt(mean_squared_error(test_data, fc))
-        st.write(f'RMSE (Root Mean Squared Error): {round(rmse, 4)}')
-        if rmse < 0.05:
-            st.info('The RMSE is low, suggesting the model fits the data well.')
-        elif rmse < 0.2:
-            st.info('The RMSE is moderate, which means the model is fairly reliable.')
-        else:
-            st.info('The RMSE is high, which could mean the model is unreliable for this data.')
-
-        mape = np.mean(np.abs(fc - test_data) / np.abs(test_data))
-        st.write(f'MAPE (Mean Absolute Percentage Error): {round(mape, 4)}')
-        if mape < 0.05:
-            st.info('The MAPE is below 5%, indicating excellent predictive accuracy.')
-        elif mape < 0.2:
-            st.info('The MAPE is between 5% and 20%, which is generally considered good.')
-        else:
-            st.info('The MAPE is above 20%, which means the model may not be very accurate.')
+    # Plotting
+    st.pyplot(plot_predictions(data['Close'].iloc[-n_periods:], future_forecast, future_index))
 
