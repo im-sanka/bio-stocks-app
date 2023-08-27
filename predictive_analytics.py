@@ -28,29 +28,32 @@ def plot_predictions(y_test, y_pred, future_index):
 
 # Configuration for auto_arima
 st.sidebar.header("Auto ARIMA Configuration")
-start_p = st.sidebar.slider("start_p", 1, 5, 1)
-start_q = st.sidebar.slider("start_q", 1, 5, 1)
-max_p = st.sidebar.slider("max_p", 1, 5, 3)
-max_q = st.sidebar.slider("max_q", 1, 5, 3)
-m = st.sidebar.slider("Seasonality (m)", 1, 24, 12)
-start_P = st.sidebar.slider("start_P", 0, 5, 0)
-d = st.sidebar.slider("d", 0, 2, 1)
-D = st.sidebar.slider("D", 0, 2, 1)
-trace = st.sidebar.checkbox("Trace", True)
-error_action = st.sidebar.selectbox("error_action", ["ignore", "warn", "raise", "trace"])
-suppress_warnings = st.sidebar.checkbox("Suppress Warnings", True)
-stepwise = st.sidebar.checkbox("Stepwise", True)
+
+optimization_level = st.sidebar.selectbox(
+    "Optimization Level",
+    ["Lenient", "Moderate", "Extreme"],
+)
+
+if optimization_level == "Lenient":
+    p_values = (1, 2)
+    q_values = (1, 2)
+elif optimization_level == "Moderate":
+    p_values = (1, 3)
+    q_values = (1, 3)
+else:
+    p_values = (1, 5)
+    q_values = (1, 5)
 
 # Apply auto_arima
 if st.button("Run Auto ARIMA"):
     st.write("Running Auto ARIMA...")
-    stepwise_model = auto_arima(data['Close'], start_p=start_p, start_q=start_q,
-                                max_p=max_p, max_q=max_q, m=m,
-                                start_P=start_P, seasonal=True,
-                                d=d, D=D, trace=trace,
-                                error_action=error_action,
-                                suppress_warnings=suppress_warnings,
-                                stepwise=stepwise)
+    stepwise_model = auto_arima(data['Close'], start_p=p_values[0], start_q=q_values[0],
+                                max_p=p_values[1], max_q=q_values[1], m=12,
+                                start_P=0, seasonal=True,
+                                d=1, D=1, trace=True,
+                                error_action='ignore',
+                                suppress_warnings=True,
+                                stepwise=True)
 
     st.write(f"AIC: {stepwise_model.aic()}")
 
@@ -61,4 +64,3 @@ if st.button("Run Auto ARIMA"):
 
     # Plotting
     st.pyplot(plot_predictions(data['Close'].iloc[-n_periods:], future_forecast, future_index))
-

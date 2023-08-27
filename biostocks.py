@@ -425,5 +425,6 @@ elif view_option == "Analytic/ Prediction":
     st.subheader("Will be updated soon! :smile: ")
 
 
+
 if __name__ == "__main__":
     st.markdown("What do you think about this? Let me know your comments! [E-mail me here!](mailto:immanuel.sanka@gmail.com)")
