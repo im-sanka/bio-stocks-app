@@ -4,63 +4,70 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pmdarima import auto_arima
 
+class StockPredictor:
+    def __init__(self, ticker):
+        self.ticker = ticker
+        self.data = None
+        self.model = None
+
+    def download_data(self):
+        st.write(f"Downloading data for {self.ticker}...")
+        self.data = yf.download(self.ticker, start='2020-01-01', end='2023-01-01')
+        st.write("Data downloaded.")
+
+    def display_data(self):
+        if st.checkbox("Show Raw Data"):
+            st.dataframe(self.data)
+
+    @st.cache(allow_output_mutation=True)  # Caching the function output
+    def run_auto_arima(self, p_values, q_values):
+        st.write("Running Auto ARIMA...")
+        model = auto_arima(self.data['Close'], start_p=p_values[0], start_q=q_values[0],
+                           max_p=p_values[1], max_q=q_values[1], m=12,
+                           start_P=0, seasonal=True,
+                           d=1, D=1, trace=True,
+                           error_action='ignore',
+                           suppress_warnings=True,
+                           stepwise=True)
+        st.write(f"AIC: {model.aic()}")
+        return model
+
+    def predict_and_plot(self, model, n_periods):
+        future_forecast, conf_int = model.predict(n_periods=n_periods, return_conf_int=True)
+        future_index = pd.date_range(self.data.index[-1], periods=n_periods+1, closed='right')
+        fig, ax = plt.subplots()
+        ax.plot(self.data['Close'].index[-n_periods:], self.data['Close'].values[-n_periods:], label='Actual')
+        ax.plot(future_index, future_forecast, linestyle='dashed', label='Predicted')
+        ax.legend()
+        st.pyplot(fig)
+
+# Streamlit App
 st.title('Stock Predictor with Auto ARIMA')
 
-# User input for stock ticker
 ticker = st.text_input("Enter Stock Ticker (e.g., AAPL, MSFT):", "AAPL")
+stock_predictor = StockPredictor(ticker)
 
-# Download data
-st.write(f"Downloading data for {ticker}...")
-data = yf.download(ticker, start='2020-01-01', end='2023-01-01')
-st.write("Data downloaded.")
+# Download data and display
+stock_predictor.download_data()
+stock_predictor.display_data()
 
-# Show raw data
-if st.checkbox("Show Raw Data"):
-    st.dataframe(data)
-
-# Function to plot predictions
-def plot_predictions(y_test, y_pred, future_index):
-    fig, ax = plt.subplots()
-    ax.plot(y_test.index, y_test.values, color='blue', label='Actual')
-    ax.plot(future_index, y_pred, color='red', linestyle='dashed', label='Predicted')
-    ax.legend()
-    return fig
-
-# Configuration for auto_arima
+# Sidebar for ARIMA configuration
 st.sidebar.header("Auto ARIMA Configuration")
-
 optimization_level = st.sidebar.selectbox(
     "Optimization Level",
     ["Lenient", "Moderate", "Extreme"],
 )
 
-if optimization_level == "Lenient":
-    p_values = (1, 2)
-    q_values = (1, 2)
-elif optimization_level == "Moderate":
-    p_values = (1, 3)
-    q_values = (1, 3)
-else:
-    p_values = (1, 5)
-    q_values = (1, 5)
+p_values, q_values = (1, 2), (1, 2)  # Default values
+if optimization_level == "Moderate":
+    p_values, q_values = (1, 3), (1, 3)
+elif optimization_level == "Extreme":
+    p_values, q_values = (1, 5), (1, 5)
 
-# Apply auto_arima
+# Run Auto ARIMA and Predict
 if st.button("Run Auto ARIMA"):
-    st.write("Running Auto ARIMA...")
-    stepwise_model = auto_arima(data['Close'], start_p=p_values[0], start_q=q_values[0],
-                                max_p=p_values[1], max_q=q_values[1], m=12,
-                                start_P=0, seasonal=True,
-                                d=1, D=1, trace=True,
-                                error_action='ignore',
-                                suppress_warnings=True,
-                                stepwise=True)
+    model = stock_predictor.run_auto_arima(p_values, q_values)
 
-    st.write(f"AIC: {stepwise_model.aic()}")
-
-    # Make prediction
+if 'model' in locals():
     n_periods = st.slider("Select Number of Periods for Prediction:", 10, 100, 30)
-    future_forecast, conf_int = stepwise_model.predict(n_periods=n_periods, return_conf_int=True)
-    future_index = pd.date_range(data.index[-1], periods=n_periods+1, closed='right')
-
-    # Plotting
-    st.pyplot(plot_predictions(data['Close'].iloc[-n_periods:], future_forecast, future_index))
+    stock_predictor.predict_and_plot(model, n_periods)
