@@ -133,7 +133,7 @@ def financial_statements_eda(ticker_symbol):
             evaluations.append(f"**P/E ratio** is not available (N/A)")
         return evaluations
 
-    with st.expander("**Explanation About Financial Metrics**"):
+    with st.expander("**Explanation About Financial Metrics:**"):
         st.markdown("""
         - **Debt/Equity Ratio**: Represents a company's financial leverage. It's the proportion of equity and debt a company is using to finance its assets. A high ratio suggests that a company has aggressively financed its growth with debt.
         - **Return on Equity (RoE)**: Measures a company's profitability by revealing how much profit a company generates with the money shareholders have invested.
@@ -216,7 +216,7 @@ st.sidebar.markdown(download_link, unsafe_allow_html=True)
 start_date = st.sidebar.date_input("Start Date", datetime.date.today() - datetime.timedelta(days=365))
 end_date = st.sidebar.date_input("End Date", datetime.date.today())
 
-# Option to switch between "basic" and "advanced" views in the sidebar
+# Option to switch between "basic" and "advanced", and "analytic/ prediction" views in the sidebar
 view_option = st.sidebar.selectbox("Choose view:", ["Basic", "Advanced","Analytic/ Prediction"])
 
 # Moving average option
